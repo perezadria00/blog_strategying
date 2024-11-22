@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Posts;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+
+
+Route::view('/posts', 'livewire.posts');
+Route::get('/posts/{id}', [Posts::class, 'show'])->name('post.show');
+
+Route::view('/','livewire.home');
+
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -22,5 +30,7 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+
 
 require __DIR__.'/auth.php';
