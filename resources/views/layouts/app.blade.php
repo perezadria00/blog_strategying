@@ -18,15 +18,51 @@
 </head>
 
 <body class="font-sans antialiased h-full">
+
     <div class="min-h-screen bg-gray-200 dark:bg-gray-900 flex flex-col">
 
-        <!-- Header -->
         <header class="bg-gray-400 h-12">
-            <nav>
-              <li>
-          
-              </li>
+            <nav class="flex items-center justify-between h-full p-3">
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="{{ route('posts.index') }}" class="text-white text-center hover:underline hover:font-bold">Posts</a>
+                    </li>
+                </ul>
+                <ul class="flex space-x-4 ml-auto">
+                    @auth
 
+                    <li>
+                        <a href="{{ route('profile') }}" class="text-white text-center hover:underline hover:font-bold ">Profile </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('user-posts', auth()->user()->id) }}" class="text-white text-center hover:underline hover:font-bold">Your Posts </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('create.post')}}" class="text-white text-center hover:underline hover:font-bold"> Create Post</a>
+
+                    </li>
+
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-white text-center hover:underline hover:font-bold">Log Out</button>
+                        </form>
+                    </li>
+
+                    @endauth
+
+                    @guest
+
+                    <li>
+                        <a href="{{ route('register') }}" class="text-white text-center hover:underline hover:font-bold">Register</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('login') }}" class="text-white text-center hover:underline hover:font-bold">Login</a>
+                    </li>
+                    @endguest
+                </ul>
             </nav>
         </header>
 

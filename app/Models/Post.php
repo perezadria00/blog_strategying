@@ -17,9 +17,11 @@ class Post extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'title',
-        'content'
-
+        'content',
+        'tag_id',
+        'category_id'
     ];
 
     public function comments(): HasMany {

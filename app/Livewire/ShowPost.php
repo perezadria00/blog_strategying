@@ -9,24 +9,16 @@ class ShowPost extends Component
 {
     public Post $post;
 
-    public function render()
-    {
-        return view('livewire.posts.show-post');
-    }
-
-  
     public function mount($id)
     {
-     
-        $this->post = Post::with('user')->findOrFail($id);
         
-        return view('livewire.posts.show-post', ['post' => $this->post]); 
+        $this->post = Post::with('user')->findOrFail($id);
     }
 
-   
-
-    
-
-
+    public function render()
+    {
+        
+        return view('livewire.posts.show-post');
+    }
 }
 
