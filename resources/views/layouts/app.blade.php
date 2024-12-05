@@ -39,10 +39,7 @@
                         <a href="{{ route('user-posts', auth()->user()->id) }}" class="text-white text-center hover:underline hover:font-bold">Your Posts </a>
                     </li>
 
-                    <li>
-                        <a href="{{route('create.post')}}" class="text-white text-center hover:underline hover:font-bold"> Create Post</a>
-
-                    </li>
+                  
 
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="inline">

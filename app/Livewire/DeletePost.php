@@ -27,12 +27,11 @@ class DeletePost extends Component
         if ($post && $post->user_id == Auth::id()) {
             $post->delete();
             session()->flash('message', 'Post deleted successfully!');
+            return redirect()->route('user-posts', ['userId' => Auth::id()]);
         } else {
             session()->flash('message', 'Post not found or you do not have permission to delete this post.');
         }
-
         
-        $this->redirect('user-posts'); 
     }
 
     public function render()

@@ -4,7 +4,7 @@ use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ShowPost;
 use App\Livewire\UserPosts;
-use App\Livewire\CreatePost;
+use App\Livewire\EditPost;
 
 /*
 |---------------------------------------------------------------------------
@@ -33,6 +33,9 @@ Route::get('/profile/posts/{userId}', UserPosts::class)->name('user-posts');
 Route::get('/create', function(){
     return view('index');
 })->name('create.post');
+
+Route::get('/edit/{postId}', EditPost::class)->name('edit-post');
+
 
 
 

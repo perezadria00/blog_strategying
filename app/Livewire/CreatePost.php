@@ -52,7 +52,7 @@ class CreatePost extends Component
         $this->resetFields();
 
         
-        return redirect()->route('user-posts', ['userId' => Auth::id()]);
+        return $this->redirect(route('user-posts', ['userId' => Auth::id()]));
     }
 
     public function render()
