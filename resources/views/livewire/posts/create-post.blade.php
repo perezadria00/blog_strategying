@@ -19,36 +19,21 @@
         </div>
 
         <div class="mb-4 w-full">
-            <label for="content" class="block text-lg font-medium text-gray-700 underline">Tags</label>
-
-            <select name="tags" id="tags" class="mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <option value="tag1">Tag 1</option>
-                <option value="tag2">Tag 2</option>
-                <option value="tag3">Tag 3</option>
+            <label for="category" class="block text-lg font-medium text-gray-700 underline">Category</label>
+            <select wire:model="categoryId" id="categories" name="category" class="mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <option value="" disabled>Select a category</option> 
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option> 
+                @endforeach
             </select>
+            @error('categoryId')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
 
-            <button class="mt-2 bg-gray-500 text-white px-6 py-2 w-full rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">
-                Create new tag
-            </button>
-        </div>
-
-        <div class="mb-4 w-full">
-            <label for="categories" class="block text-lg font-medium text-gray-700 underline">Categories</label>
-
-            <select name="categories[]" id="categories" multiple class="mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
-                <option value="category3">Category 3</option>
-                <option value="category4">Category 4</option>
-            </select>
-
-            <button class="mt-2 bg-gray-500 text-white px-6 py-2 w-full rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">
-                Create new category
-            </button>
+            @livewire('categories.create-categories')
         </div>
 
         <div class="mt-6 flex space-x-4">
-
             <button wire:click="resetFields" class="bg-gray-500 text-white px-6 py-3 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">
                 Reset
             </button>
@@ -56,8 +41,7 @@
             <button wire:click="save" class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300">
                 Create Post
             </button>
-
         </div>
-
     </div>
 </div>
+

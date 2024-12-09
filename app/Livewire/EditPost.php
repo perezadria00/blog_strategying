@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class EditPost extends Component
 {
 
-    public $title, $content, $category, $tag, $postId, $user_id;
+    public $title, $content, $categories, $tag, $postId, $user_id;
 
     protected $rules = [
         'title' => 'required|string|max:255',
         'content' => 'required|string',
-        'category' => 'required',
+        'categories' => 'required',
         // 'tags' => 'nullable'
     ];
 
@@ -30,7 +30,7 @@ class EditPost extends Component
             $this->postId = $post->id;
             $this->title = $post->title;
             $this->content = $post->content;
-            $this->category = $post->category_id;
+            $this->categories = $post->category_id;
             $this->tag = $post->tag_id;
         } else {
             session()->flash('error', 'Post not found!');
@@ -54,7 +54,7 @@ class EditPost extends Component
 
             'content' => $this->content,
 
-            'category_id' => $this->category,
+            'category_id' => $this->categories,
 
             'tags' => $this->tag
 

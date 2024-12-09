@@ -2,38 +2,22 @@
 
 namespace App\Livewire\Categories;
 
+
 use Livewire\Component;
-use App\Models\Category;
+
 
 class CreateCategories extends Component
 {
 
-    public $name, $categoryId;
+    public $newCategory;
 
-    protected $rules = [
-
-        'name' => 'required|string|max:25'
-    ];
-
-    public function mount($categoryId){
-        $this->categoryId = $categoryId;
-    }
-
-    public function resetFields()
+    public function addCategory()
     {
-        $this->reset(['name']);
-    }
-    public function save()
-    {
+       
+        $this->dispatch('categoryAdded', ['category' => $this->newCategory]);
+        
 
-        $this->validate();
-
-        Category::create([
-            'name' => $this->name
-        ]);
-
-        session()->flash('message', 'Category created successfully!');
-
+        $this->newCategory = '';
     }
 
     public function render()

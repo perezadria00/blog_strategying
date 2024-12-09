@@ -5,7 +5,7 @@
 @section('content')
 <div class="flex justify-center py-8 px-4">
 
-    <!-- Contenedor que ocupa todo el ancho disponible -->
+
     <div class="bg-gray-300 p-6 w-full max-w-full lg:max-w-3xl rounded-md shadow-lg">
 
         <h1 class="font-bold text-2xl text-center text-gray-800 underline decoration-solid pb-5">{{ $post->title }}</h1>
@@ -25,6 +25,11 @@
                 </button>
             </div>
         </div>
+
+        
+
+        
+
     </div>
 
     
