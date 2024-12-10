@@ -4,6 +4,7 @@ use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ShowPost;
 use App\Livewire\UserPosts;
+use App\Livewire\ShowComment;
 use App\Livewire\EditPost;
 
 /*

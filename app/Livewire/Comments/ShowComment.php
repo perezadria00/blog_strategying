@@ -6,17 +6,17 @@ use Livewire\Component;
 use App\Models\Comment;
 
 class ShowComment extends Component
-
-
 {
 
-    public Comment $comment;
+    public $comments;
 
     public function mount($id){
-        $this->comment = Comment::with('user')->findOrFail($id);
+        $this->comments = Comment::find($id);
     }
     public function render()
     {
-        return view('livewire.show-comment');
+        return view('livewire.comments.show-comment', [
+            'comments' => $this->comments
+        ]);
     }
 }

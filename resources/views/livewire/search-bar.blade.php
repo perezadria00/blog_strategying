@@ -1,0 +1,1 @@
+<input wire:model="search" type="text"  class="border p-2 rounded" placeholder="Search a post">
