@@ -1,18 +1,14 @@
 <?php
 
-
-
 namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
-use App\Models\User;
 
 class PostComponent extends Component
 {
-    public $user;
-
-    public $search = " ";
+    public $search = '';
+    public $sortOrderDesc = 'desc'; // Default sort order
 
     protected $listeners = ['searchUpdated' => 'updateSearch'];
 
@@ -20,31 +16,27 @@ class PostComponent extends Component
     {
         $this->search = $searchTerm;
     }
-   
-
-    public function mount($userId = null)
-    {
-        $this->user = $userId ? User::findOrFail($userId) : null;
-    }
 
     public function render()
     {
-        
+   
         $query = Post::query();
 
-        if ($this->user) {
-            $query->where('user_id', $this->user->id);
+     
+        if ($this->search) {
+            $query->where('title', 'like', '%' . $this->search . '%');
         }
 
-        $posts = Post::where('title', 'like', '%' . $this->search . '%')->get();
-        $posts = $query->get();
-        
+  
+        $posts = $query->orderBy('created_at', $this->sortOrderDesc)->get();
+
         return view('livewire.posts.post-component', [
             'posts' => $posts,
             'search' => $this->search
         ]);
     }
 }
+
 
 
 

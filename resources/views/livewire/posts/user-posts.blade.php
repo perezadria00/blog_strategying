@@ -11,17 +11,25 @@
     </div>
     @endif
 
+
+    @auth
+    @if(auth()->user()->id == $posts[0]->user->id)
+
+    <h1 class="flex justify-center pt-8 text-2xl underline">Your posts</h1>
+
     <div class="flex justify-end mt-4 bg-white rounded-lg p-4 pt-1 shadow-lg border border-gray-300">
-        @auth
         <button class="bg-blue-500 rounded-lg p-4 mt-4">
             <a href="{{ route('create.post') }}" class="text-white text-center hover:font-bold">Create Post</a>
         </button>
-        @else
-        <button class="bg-blue-500 rounded-lg p-4 mt-4">
-            <a href="{{ route("login") }}" class="text-white text-center hover:font-bold">Create Post</a>
-        </button>
-        @endauth
     </div>
+    @else
+    <h1 class="flex justify-center pt-8 text-2xl underline">{{ $posts[0]->user->name }}'s posts</h1>
+    @endif
+    @endauth
+
+    @guest
+    <h1 class="flex justify-center pt-8 text-2xl underline">Posts</h1>
+    @endguest
 
     @if($posts->isEmpty())
     <p class="flex justify-center mt-6 text-red-500">No posts available.</p>
@@ -35,7 +43,7 @@
                 <h3 class="font-bold underline text-center text-2xl">{{ $post->title }}</h3>
             </div>
 
-            <div class="flex justify-end bg-gray-500 text-white p-2 rounded-lg ml-auto">
+            <div class="flex justify-end bg-orange-500 text-white p-2 rounded-lg ml-auto">
                 <h3 class="">#{{$post->category->name }}</h3><br>
             </div>
 

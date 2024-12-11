@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class ShowPost extends Component
 {
     public Post $post;
-    public $comments;
+    public $comments, $category;
 
     public function mount($id)
     {
@@ -18,16 +18,22 @@ class ShowPost extends Component
         $this->post = Post::with('user')->findOrFail($id);
         
         $this->comments = $this->post->comments;
+        $this->category = $this->post->category;
+
+       
 
        
     }
+
+    
 
     public function render()
     {
         
         return view('livewire.posts.show-post',[
             'post' => $this->post,
-            'comments' => $this->comments
+            'comments' => $this->comments,
+            'category' => $this->category
         ]);
     }
 }

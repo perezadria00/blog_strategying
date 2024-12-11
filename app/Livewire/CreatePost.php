@@ -9,37 +9,56 @@ use Illuminate\Support\Facades\Auth;
 
 class CreatePost extends Component
 {
-    public $title, $content, $categoryId, $tagId;  
+    public $title, $content, $categoryId, $tagId, $newCategoryName;
     public $categories = [];
-
 
     protected $rules = [
         'title' => 'required|string|max:255',
         'content' => 'required|string',
         'categoryId' => 'required|exists:categories,id',  
-      
     ];
 
     public $messages = [
         'title.required' => 'Title cannot be empty',
         'content.required' => 'Content cannot be empty',
         'categoryId.required' => 'You must select a category.',
-        
     ];
 
-   
+  
+    protected $listeners = ['categoryAdded' => 'addCategory'];
+
+    public function addCategory($category)
+    {
+       
+        $newCategory = Category::create(['name' => $category]);
+
+        
+        $this->categories = Category::all();
+
+        
+        $this->categoryId = $newCategory->id;
+    }
+
     public function resetFields()
     {
         $this->reset(['title', 'content', 'categoryId']);
+
+        $this->dispatch('resetNewCategory');
     }
 
-    // Guardar el post
+  
     public function save()
     {
-        $this->validate();  // Validar los datos
+        $this->validate();  
 
         try {
-            // Crear el post
+            
+            if ($this->newCategoryName) {
+                $category = Category::create(['name' => $this->newCategoryName]);
+                $this->categoryId = $category->id; 
+            }
+
+            
             Post::create([
                 'user_id' => Auth::id(),
                 'title' => $this->title,
@@ -60,10 +79,8 @@ class CreatePost extends Component
     public function mount()
     {
         $this->categories = Category::all();  
-
     }
 
-    
     public function render()
     {
         return view('livewire.posts.create-post', [
@@ -71,4 +88,5 @@ class CreatePost extends Component
         ]);
     }
 }
+
 

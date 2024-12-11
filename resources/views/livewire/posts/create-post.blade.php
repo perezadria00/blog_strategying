@@ -30,6 +30,7 @@
             <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
 
+            
             @livewire('categories.create-categories')
         </div>
 
@@ -44,4 +45,3 @@
         </div>
     </div>
 </div>
-
