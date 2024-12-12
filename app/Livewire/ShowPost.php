@@ -13,16 +13,11 @@ class ShowPost extends Component
     public $comments, $category;
 
     public function mount($id)
-    {
-       
+    {  
         $this->post = Post::with('user')->findOrFail($id);
         
         $this->comments = $this->post->comments;
-        $this->category = $this->post->category;
-
-       
-
-       
+        $this->category = $this->post->category;      
     }
 
     
