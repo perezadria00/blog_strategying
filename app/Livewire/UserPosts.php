@@ -14,7 +14,7 @@ class UserPosts extends Component
     public function mount($userId)
     {
         $this->userId = $userId;
-        $this->posts = Post::with('category')->where('user_id', $this->userId)->get();
+        $this->posts = Post::where('user_id', $this->userId)->get();
     }
 
 

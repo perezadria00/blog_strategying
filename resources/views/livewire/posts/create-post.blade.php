@@ -18,21 +18,7 @@
             @enderror
         </div>
 
-        <div class="mb-4 w-full">
-            <label for="category" class="block text-lg font-medium text-gray-700 underline">Category</label>
-            <select wire:model="categoryId" id="categories" name="category" class="mt-2 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <option value="" disabled>Select a category</option> 
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option> 
-                @endforeach
-            </select>
-            @error('categoryId')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
-
-            
-            @livewire('categories.create-categories')
-        </div>
+        
 
         <div class="mt-6 flex space-x-4">
             <button wire:click="resetFields" class="bg-gray-500 text-white px-6 py-3 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">

@@ -43,9 +43,7 @@
                 <h3 class="font-bold underline text-center text-2xl">{{ $post->title }}</h3>
             </div>
 
-            <div class="flex justify-end bg-orange-500 text-white p-2 rounded-lg ml-auto">
-                <h3 class="">#{{$post->category->name }}</h3><br>
-            </div>
+            <!--  Añadir div para categorias -->
 
         </div>
 

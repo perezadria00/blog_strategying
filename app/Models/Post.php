@@ -30,14 +30,10 @@ class Post extends Model
         return $this->hasMany(Comment::class)->with('user'); ;
     }
 
-    public function tags(): BelongsToMany {
+   
 
-        return $this->belongsToMany(Tag::class);
-    }
-
-    public function category(): BelongsTo {
-
-        return $this->belongsTo(Category::class, 'category_id');
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'post_category');
     }
 
     public function user(): BelongsTo {

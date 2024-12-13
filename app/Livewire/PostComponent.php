@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostComponent extends Component
 {
     public $search = '';
-    public $sortOrderDesc = 'desc'; // Default sort order
+    public $sortOrderDesc = 'desc'; 
 
     protected $listeners = ['searchUpdated' => 'updateSearch'];
 

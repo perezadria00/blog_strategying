@@ -27,13 +27,11 @@
                 <div class="flex flex-col">
                     <span class="text-l text-gray-600">Posted on: {{ $post->created_at->format('d-m-Y') }}</span>
 
-                    <div class="flex justify-start bg-orange-500 text-white p-2 rounded-lg mt-1 max-w-max">
-                        <h3 class="m-0">#{{ $post->category->name }}</h3>
-                    </div>
-                    
+                    <!-- Añadir div para categorias -->
+
                 </div>
 
-                
+
                 <div class="flex items-center justify-between">
                     <div class="max-w-xs">
                         @if($post->user && $post->user->name)
